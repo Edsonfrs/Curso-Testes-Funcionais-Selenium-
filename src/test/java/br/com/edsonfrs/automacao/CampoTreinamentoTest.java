@@ -1,5 +1,7 @@
 package br.com.edsonfrs.automacao;
 
+import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -47,7 +49,7 @@ public class CampoTreinamentoTest {
         driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
 
         driver.findElement(By.id("elementosForm:sexo:0")).click();
-        String texto = driver.findElement(By.id("elementosForm:sexo:0")).getAttribute("value");
+        driver.findElement(By.id("elementosForm:sexo:0")).getAttribute("value");
 
         Assertions.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
 
@@ -61,7 +63,7 @@ public class CampoTreinamentoTest {
         driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
 
         driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
-        String texto = driver.findElement(By.id("elementosForm:comidaFavorita:2")).getAttribute("value");
+        driver.findElement(By.id("elementosForm:comidaFavorita:2")).getAttribute("value");
 
         Assertions.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:2")).isSelected());
 
@@ -109,6 +111,78 @@ public class CampoTreinamentoTest {
 
         driver.quit();
     }
+
+    @Test
+    public void deveInteragirComComboDeMultiplaEscolha() {
+        System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
+
+        WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+        Select combo = new Select(elemento);
+        combo.selectByVisibleText("Natacao");
+        combo.selectByVisibleText("Corrida");
+        combo.selectByVisibleText("O que eh esporte?");
+
+        List<WebElement> options = combo.getAllSelectedOptions();
+        Assertions.assertEquals(3, options.size());
+
+        combo.deselectByVisibleText("Corrida");
+
+        options = combo.getAllSelectedOptions();
+        Assertions.assertEquals(2, options.size());
+
+        driver.quit();
+    }
+
+    @Test
+    public void deveInteragirComBotoes() {
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/camp/componentes.html");
+
+        WebElement botao = driver.findElement(By.id("buttonSimple"));
+        botao.click();
+        String texto = botao.getAttribute("value");
+
+        Assertions.assertEquals("Obrigado!", texto );
+        driver.quit();
+    }
+    @Test
+    public void deveInteragirComLinks() {
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/camp/componentes.html");
+
+        driver.findElement(By.linkText("Voltar")).click();
+        String texto = driver.findElement(By.id("resultado")).getText();
+
+        Assertions.assertEquals("Voltou!", texto);
+        //Assertions.fail();
+
+        driver.quit();
+    }
+
+    @Test
+    public void deveBuscarTextosNaPagina() {
+        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+        WebDriver driver = new ChromeDriver();
+        driver.get("file:///" + System.getProperty("user.dir") + "/camp/componentes.html");
+
+        // Método para busca de texto dentro da tela - Não é performatico
+        //String texto = driver.findElement(By.tagName("body")).getText();
+        //Assertions.assertTrue(texto.contains("Campo de Treinamento"));
+
+        Assertions.assertEquals("Campo de Treinamento",
+                driver.findElement(By.tagName("h3")).getText());
+
+        Assertions.assertEquals("Cuidado onde clica, muitas armadilhas...",
+                driver.findElement(By.className("facilAchar")).getText());
+
+        driver.quit();
+    }
+
+
 
 
 
