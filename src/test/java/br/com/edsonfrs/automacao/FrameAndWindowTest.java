@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FrameAndWindowTest {
     @Test
-    public void deveDeveInteragirComElementosDentroDeUmFrame() {
+    public void deveInteragirComElementosDentroDeUmFrame() {
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
@@ -28,7 +28,7 @@ public class FrameAndWindowTest {
     }
 
     @Test
-    public void deveDeveInteragirComElementosDentroDeUmaJanela() {
+    public void deveInteragirComElementosDentroDeUmaJanela() {
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
@@ -44,7 +44,7 @@ public class FrameAndWindowTest {
     }
 
     @Test
-    public void deveDeveInteragirComElementosDentroDeUmaJanelaSemTitulo() {
+    public void deveInteragirComElementosDentroDeUmaJanelaSemTitulo() {
         System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
         driver.get("file:///"+System.getProperty("user.dir")+"/camp/componentes.html");
