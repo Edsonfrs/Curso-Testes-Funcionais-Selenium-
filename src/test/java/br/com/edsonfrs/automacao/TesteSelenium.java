@@ -11,7 +11,7 @@ public class TesteSelenium {
 
     @Test
     public void deveAcessarPaginaGoogle(){
-        System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
+        //System.setProperty("webdriver.chrome.driver","drivers/chromedriver");
         WebDriver driver = new ChromeDriver();
         // Definindo posição e tamanho da janela do navegador
         //driver.manage().window().setPosition(new Point(1, 1));
