@@ -1,4 +1,4 @@
-package br.com.edsonfrs.automacao;
+package br.com.edsonfrs.automacao.inicio;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

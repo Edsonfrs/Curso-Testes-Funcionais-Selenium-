@@ -1,4 +1,4 @@
-package br.com.edsonfrs.automacao;
+package br.com.edsonfrs.automacao.inicio;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
@@ -30,9 +30,12 @@ public class CampoTreinamento2Test {
 
     @Test
     public void deveInteragirComTextField() {
-        //inicializaNavegador();
-        driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste");
-        //finalizaNavegador();
+        //driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste");
+        driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste\n\n de\n\n escrita\n\n TextField");
+        String texto = driver.findElement(By.id("elementosForm:nome")).getAttribute("value");
+        System.out.println(texto);
+
+        Assertions.assertEquals("Teste de escrita TextField", texto );
     }
 
     @Test
