@@ -83,34 +83,32 @@ public class CampoTreinamentoDSLTest {
 
     @Test
     public void deveInteragirComComboDeMultiplaEscolha() {
-        WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
-        Select combo = new Select(elemento);
-        combo.selectByVisibleText("Natacao");
-        combo.selectByVisibleText("Corrida");
-        combo.selectByVisibleText("O que eh esporte?");
+        dsl.selecionarCombo("elementosForm:esportes", "Natacao" );
+        dsl.selecionarCombo("elementosForm:esportes", "Corrida" );
+        dsl.selecionarCombo("elementosForm:esportes", "O que eh esporte?");
+        WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+        Select combo = new Select(element);
 
-        List<WebElement> options = combo.getAllSelectedOptions();
-        Assertions.assertEquals(3, options.size());
+        List<WebElement> allSelectedOptionsoptions = combo.getAllSelectedOptions();
+        Assertions.assertEquals(3, allSelectedOptionsoptions.size());
 
         combo.deselectByVisibleText("Corrida");
-
-        options = combo.getAllSelectedOptions();
-        Assertions.assertEquals(2, options.size());
+        allSelectedOptionsoptions = combo.getAllSelectedOptions();
+        Assertions.assertEquals(2, allSelectedOptionsoptions.size());
 
     }
 
     @Test
     public void deveInteragirComBotoes() {
-        WebElement botao = driver.findElement(By.id("buttonSimple"));
-        botao.click();
-        String texto = botao.getAttribute("value");
+        dsl.clicarBotao("buttonSimple");
+        String texto = dsl.obterValorElemento("buttonSimple", "value");
 
         Assertions.assertEquals("Obrigado!", texto );
     }
     @Test
     public void deveInteragirComLinks() {
-        driver.findElement(By.linkText("Voltar")).click();
-        String texto = driver.findElement(By.id("resultado")).getText();
+        dsl.clicarLink("Voltar");
+        String texto = dsl.obterTexto("resultado");
 
         Assertions.assertEquals("Voltou!", texto);
     }
@@ -118,9 +116,8 @@ public class CampoTreinamentoDSLTest {
     @Test
     public void deveBuscarTextosNaPagina() {
         Assertions.assertEquals("Campo de Treinamento",
-                driver.findElement(By.tagName("h3")).getText());
-
+                dsl.obterTexto(By.tagName("h3")));
         Assertions.assertEquals("Cuidado onde clica, muitas armadilhas...",
-                driver.findElement(By.className("facilAchar")).getText());
+                dsl.obterTexto(By.className("facilAchar")));
     }
 }
