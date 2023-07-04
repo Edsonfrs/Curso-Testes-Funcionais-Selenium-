@@ -1,10 +1,10 @@
-package br.com.edsonfrs.automacao.dsl;
+package br.com.edsonfrs.automacao.pageobject;
 
+import br.com.edsonfrs.automacao.dsl.DSL;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 
 import java.util.Arrays;
 import java.util.List;
